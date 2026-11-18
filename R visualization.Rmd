@@ -1,0 +1,45 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(datasets)
+data(mtcars)
+
+head(mtcars, 5)
+```
+
+```{r}
+library(ggplot2)
+
+#create a scatterplot of displacement (disp) and miles per gallon (mpg)
+
+ggplot(aes(x=disp, y=mpg,), data=mtcars) + geom_point()
+```
+
+```{r}
+#add a title
+ggplot(aes(x=disp, y=mpg,), data=mtcars) + geom_point()+ggtitle("displacement vs miles per gallon") + labs(x="displacement", y="miles per galon")
+
+```
+
+```{r}
+#CREATION D'UNE BOITE A MOUSTACHE(boxplot)
+#convert vs as a factor because it represent the type of the motor and is not a numerical variable 
+mtcars$vs = as.factor(mtcars$vs)
+
+ggplot(aes(x=disp, y=mpg,), data=mtcars)+geom_boxplot()
+
+```
+
+```{r}
+ggplot(aes(x=vs, y=mpg, fill = vs), data = mtcars) + 
+  geom_boxplot(alpha=0.3) +
+  theme(legend.position="none")
+```
+
+```{r}
+ggplot(aes(x=wt),data=mtcars) + geom_histogram(binwidth=0.5)
+```
+
